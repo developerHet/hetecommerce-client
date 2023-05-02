@@ -70,7 +70,7 @@ ${mobile({fontSize: "12px",marginLeft: "10px"})}
 
 const Navbar = () => {
   const quantity = useSelector(state=>state.cart.quantity);
- 
+  const user = useSelector((state)=>state.user.currentUser);
   return (
     <Container>
       <Wrapper>
@@ -86,8 +86,9 @@ const Navbar = () => {
           <Logo>HET.</Logo>{" "}
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
+
+          {!user && <Link to="/register" style={{ textDecoration: 'none',color: 'black' }}><MenuItem>REGISTER</MenuItem></Link>}
+          {!user && <Link to="/login" style={{ textDecoration: 'none',color: 'black' }}><MenuItem>SIGN IN</MenuItem></Link>}
           <Link  to="/cart">
           <MenuItem>
             <Badge badgeContent={quantity} color="primary">
